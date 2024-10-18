@@ -14,8 +14,12 @@ const MessageContainer = () => {
       ) : (
         <>
           {/* Header */}
-          <div className="px-4 py-2 mb-2 bg-slate-500">
-            <span className="label-text">To:</span>{" "}
+          <div className="flex flex-row items-center gap-2 px-4 py-2 mb-2 bg-slate-500">
+            <img
+              src={selectedConversation.profilePic}
+              alt="user avatar"
+              className="w-8 h-8"
+            />
             <span className="font-bold text-gray-900">
               {selectedConversation.fullName}
             </span>

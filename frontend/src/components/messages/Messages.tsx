@@ -11,7 +11,7 @@ const Messages = () => {
   const ref = useChatScroll(messages) as React.MutableRefObject<HTMLDivElement>;
 
   return (
-    <div className="flex-1 px-4 overflow-auto" ref={ref}>
+    <div className="flex-1 px-4 py-2 overflow-auto" ref={ref}>
       {loading && [...Array(3)].map((_, idx) => <MessageSkeleton key={idx} />)}
 
       {!loading &&
@@ -20,7 +20,7 @@ const Messages = () => {
         ))}
 
       {!loading && messages.length === 0 && (
-        <p className="text-center text-white">
+        <p className="mt-8 text-center text-white">
           Send a message to start the conversation
         </p>
       )}

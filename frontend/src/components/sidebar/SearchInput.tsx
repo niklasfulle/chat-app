@@ -27,17 +27,17 @@ const SearchInput = () => {
   };
 
   return (
-    <form className="flex items-center gap-2" onSubmit={handleSubmit}>
+    <form className="flex items-center gap-1 md:gap-2" onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Search…"
-        className="w-full p-2 pl-4 rounded-lg input-sm md:input input-bordered"
+        className="w-full p-1 pl-2 md:p-2 md:pl-4 rounded-xl input-sm md:input input-bordered border-[1px] border-black "
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
       <button
         type="submit"
-        className="p-2 text-white rounded-lg btn md:btn-md btn-sm btn-circle bg-sky-500"
+        className="p-2 text-white transition-all duration-300 rounded-xl btn md:btn-md btn-sm btn-circle bg-sky-500 hover:bg-sky-600 eas-in active:bg-sky-700 border-[1px] border-white"
       >
         <Search className="w-4 h-4 outline-none md:w-6 md:h-6" />
       </button>
