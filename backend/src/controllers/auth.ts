@@ -2,10 +2,17 @@ import { Request, Response } from "express";
 import { db } from "../db/prisma.js";
 import bcryptjs from "bcryptjs";
 import generateToken from "../utils/generateToken.js";
+import { LoginSchema, RegisterSchema } from "../schemas/index.js";
 
 export const signup = async (req: Request, res: Response) => {
   try {
-    const { fullName, username, password, confirmPassword } = req.body;
+    const validatedField = RegisterSchema.safeParse(req.body);
+
+    if (!validatedField.success) {
+      return res.status(400).json({ error: "Invalid fields!" });
+    }
+
+    const { fullName, username, password, confirmPassword } = validatedField.data
 
     if (!fullName || !username || !password || !confirmPassword) {
       return res.status(400).json({ error: "Please fill in all fields" });
@@ -57,7 +64,16 @@ export const signup = async (req: Request, res: Response) => {
 
 export const login = async (req: Request, res: Response) => {
   try {
-    const { username, password } = req.body;
+    const validatedField = LoginSchema.safeParse(req.body);
+
+    if (!validatedField.success) {
+      return res.status(400).json({ error: "Invalid fields!" });
+    }
+
+    const { username, password } = validatedField.data
+
+    //console.log(validatedField)
+    //const { username, password } = req.body;
     const user = await db.user.findUnique({ where: { username } });
 
     if (!user) {
