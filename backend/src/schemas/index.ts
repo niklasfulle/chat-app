@@ -1,16 +1,16 @@
 import * as z from "zod"
 
 export const LoginSchema = z.object({
-  username: z.string().min(1, "Username is requierd"),
-  password: z.string().min(1, "Password is requierd"),
+  username: z.string().min(1, "Benutzername ist erforderlich!"),
+  password: z.string().min(1, "Passwort ist erforderlich!"),
 })
 
 export const RegisterSchema = z.object({
-  fullName: z.string().min(1, "Full name is requierd"),
-  username: z.string().min(1, "Username is requierd"),
-  password: z.string().min(6, "Minimum 6 characters requierd"),
-  confirmPassword: z.string().min(6, "Minimum 6 characters requierd"),
+  fullName: z.string().min(1, "Name ist erforderlich!"),
+  username: z.string().min(1, "Benutzername ist erforderlich!"),
+  password: z.string().min(6, "Mindestens 6 Zeichen für das Passwort erforderlich!"),
+  confirmPassword: z.string().min(6, "Mindestens 6 Zeichen für das Passwort erforderlich!"),
 }).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords don't match!",
+  message: "Die Passwörter stimmen nicht überein!",
   path: ["confirm"], // path of error
 });

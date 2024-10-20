@@ -9,23 +9,19 @@ export const signup = async (req: Request, res: Response) => {
     const validatedField = RegisterSchema.safeParse(req.body);
 
     if (!validatedField.success) {
-      return res.status(400).json({ error: "Invalid fields!" });
+      return res.status(400).json({ error: "Ungültige Felder!" });
     }
 
     const { fullName, username, password, confirmPassword } = validatedField.data
 
-    if (!fullName || !username || !password || !confirmPassword) {
-      return res.status(400).json({ error: "Please fill in all fields" });
-    }
-
     if (password !== confirmPassword) {
-      return res.status(400).json({ error: "Passwords don't match" });
+      return res.status(400).json({ error: "Die Passwörter stimmen nicht überein!" });
     }
 
     const user = await db.user.findUnique({ where: { username } });
 
     if (user) {
-      return res.status(400).json({ error: "Username already exists" });
+      return res.status(400).json({ error: "Benutzer existiert bereits!" });
     }
 
     const salt = await bcryptjs.genSalt(10);
@@ -54,7 +50,7 @@ export const signup = async (req: Request, res: Response) => {
         profilePic: newUser.profilePic,
       });
     } else {
-      res.status(400).json({ error: "Invalid user data" });
+      res.status(400).json({ error: "Ungültige Benutzerdaten!" });
     }
   } catch (error: any) {
     console.log("Error in signup controller", error.message);
@@ -67,7 +63,7 @@ export const login = async (req: Request, res: Response) => {
     const validatedField = LoginSchema.safeParse(req.body);
 
     if (!validatedField.success) {
-      return res.status(400).json({ error: "Invalid fields!" });
+      return res.status(400).json({ error: "Ungültige Felder!" });
     }
 
     const { username, password } = validatedField.data
@@ -77,13 +73,13 @@ export const login = async (req: Request, res: Response) => {
     const user = await db.user.findUnique({ where: { username } });
 
     if (!user) {
-      return res.status(400).json({ error: "Invalid credentials" });
+      return res.status(400).json({ error: "Ungültige Berechtigungsnachweise" });
     }
 
     const isPasswordCorrect = await bcryptjs.compare(password, user.password);
 
     if (!isPasswordCorrect) {
-      return res.status(400).json({ error: "Invalid credentials" });
+      return res.status(400).json({ error: "Ungültige Berechtigungsnachweise" });
     }
 
     generateToken(user.id, res);
@@ -102,7 +98,7 @@ export const login = async (req: Request, res: Response) => {
 export const logout = async (req: Request, res: Response) => {
   try {
     res.cookie("jwt", "", { maxAge: 0 });
-    res.status(200).json({ message: "Logged out successfully" });
+    res.status(200).json({ message: "Erfolgreich ausgeloggt" });
   } catch (error: any) {
     console.log("Error in logout controller", error.message);
     res.status(500).json({ error: "Internal Server Error" });
@@ -114,7 +110,7 @@ export const getMe = async (req: Request, res: Response) => {
     const user = await db.user.findUnique({ where: { id: req.user.id } });
 
     if (!user) {
-      return res.status(404).json({ error: "User not found" });
+      return res.status(404).json({ error: "Benutzer nicht gefunden!" });
     }
 
     res.status(200).json({

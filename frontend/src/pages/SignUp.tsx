@@ -23,13 +23,13 @@ const SignUp = () => {
     <div className="flex flex-col items-center justify-center mx-auto shadow-lg rounded-xl min-w-96 bg-slate-800">
       <div className="w-full p-6 bg-gray-400 bg-opacity-0 rounded-lg shadow-md bg-clip-padding backdrop-filter backdrop-blur-lg">
         <h1 className="mb-10 text-3xl font-semibold text-center text-white">
-          Sign Up
+          Registrieren
         </h1>
 
         <form onSubmit={handleSubmitForm}>
           <div>
             <label className="p-2 label">
-              <span className="text-base label-text">Full Name</span>
+              <span className="text-base label-text">Name</span>
             </label>
             <Input
               className="h-10 mt-1 text-white border-gray-500 m bg-zinc-800 placeholder:text-gray-200"
@@ -45,7 +45,7 @@ const SignUp = () => {
 
           <div className="mt-6">
             <label className="p-2 label ">
-              <span className="text-base label-text">Username</span>
+              <span className="text-base label-text">Benutzername</span>
             </label>
             <Input
               className="h-10 mt-1 text-white border-gray-500 m bg-zinc-800 placeholder:text-gray-200"
@@ -61,7 +61,7 @@ const SignUp = () => {
 
           <div className="mt-6">
             <label className="pl-2 label">
-              <span className="text-base label-text">Password</span>
+              <span className="text-base label-text">Passwort</span>
             </label>
             <Input
               className="h-10 mt-1 text-white border-gray-500 m bg-zinc-800 placeholder:text-gray-200"
@@ -77,7 +77,7 @@ const SignUp = () => {
 
           <div className="mt-6">
             <label className="pl-2 label">
-              <span className="text-base label-text">Confirm Password</span>
+              <span className="text-base label-text">Passwort bestätigen</span>
             </label>
             <Input
               className="h-10 mt-1 text-white border-gray-500 m bg-zinc-800 placeholder:text-gray-200"
@@ -95,7 +95,7 @@ const SignUp = () => {
             to={"/login"}
             className="inline-block pl-2 mt-2 text-sm text-white hover:underline hover:text-blue-600"
           >
-            Already have an account?
+            Sie haben bereits ein Konto?
           </Link>
 
           <div className="mt-6">

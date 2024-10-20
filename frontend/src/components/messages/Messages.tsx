@@ -21,7 +21,7 @@ const Messages = () => {
 
       {!loading && messages.length === 0 && (
         <p className="mt-8 text-center text-white">
-          Send a message to start the conversation
+          Senden Sie eine Nachricht, um das Gespräch zu beginnen
         </p>
       )}
     </div>
