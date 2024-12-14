@@ -1,4 +1,3 @@
-import { useAuthContext } from "../../context/AuthContext";
 import useConversation from "../../zustand/useConversation";
 import { MessageCircle } from "lucide-react";
 import Messages from "./Messages";
@@ -21,7 +20,9 @@ const MessageContainer = () => {
               className="w-8 h-8"
             />
             <span className="font-bold text-gray-900">
-              {selectedConversation.fullName}
+              {selectedConversation.firstname +
+                " " +
+                selectedConversation.lastname}
             </span>
           </div>
 
@@ -35,12 +36,10 @@ const MessageContainer = () => {
 export default MessageContainer;
 
 const NoChatSelected = () => {
-  const { authUser } = useAuthContext();
   return (
     <div className="flex items-center justify-center w-full h-full">
-      <div className="flex flex-col items-center gap-2 px-4 font-semibold text-center text-gray-200 sm:text-lg md:text-xl">
-        <p>Welcome 👋 {authUser?.fullName} ❄</p>
-        <p>Select a chat to start messaging</p>
+      <div className="flex flex-row items-center gap-2 px-4 font-semibold text-center text-gray-200 sm:text-lg md:text-xl">
+        <p>Chat auswählen, um eine Nachricht zu senden</p>
         <MessageCircle className="text-3xl text-center md:text-6xl" />
       </div>
     </div>

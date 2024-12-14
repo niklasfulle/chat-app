@@ -7,7 +7,8 @@ import { Button } from "../components/ui/button";
 
 const SignUp = () => {
   const [inputs, setInputs] = useState({
-    fullName: "",
+    firstname: "",
+    lastname: "",
     username: "",
     password: "",
     confirmPassword: "",
@@ -29,16 +30,32 @@ const SignUp = () => {
         <form onSubmit={handleSubmitForm}>
           <div>
             <label className="p-2 label">
-              <span className="text-base label-text">Name</span>
+              <span className="text-base label-text">Vorname</span>
             </label>
             <Input
               className="h-10 mt-1 text-white border-gray-500 m bg-zinc-800 placeholder:text-gray-200"
               disabled={loading}
-              value={inputs.fullName}
-              placeholder="John Doe"
+              value={inputs.firstname}
+              placeholder="John"
               type="text"
               onChange={(e) =>
-                setInputs({ ...inputs, fullName: e.target.value })
+                setInputs({ ...inputs, firstname: e.target.value })
+              }
+            />
+          </div>
+
+          <div>
+            <label className="p-2 label">
+              <span className="text-base label-text">Nachname</span>
+            </label>
+            <Input
+              className="h-10 mt-1 text-white border-gray-500 m bg-zinc-800 placeholder:text-gray-200"
+              disabled={loading}
+              value={inputs.lastname}
+              placeholder="Doe"
+              type="text"
+              onChange={(e) =>
+                setInputs({ ...inputs, lastname: e.target.value })
               }
             />
           </div>

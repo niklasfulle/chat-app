@@ -2,6 +2,7 @@
 
 type ConversationType = {
   id: string;
-  fullName: string;
+  firstname: string;
+  lastname: string;
   profilePic: string;
 };

@@ -26,7 +26,7 @@ const Conversation = ({ conversation }: { conversation: ConversationType }) => {
         <div className="flex flex-col flex-1">
           <div className="flex justify-between gap-3">
             <p className="text-sm font-bold text-gray-200 md:text-md">
-              {conversation.fullName}
+              {conversation.firstname + " " + conversation.lastname}
             </p>
           </div>
         </div>

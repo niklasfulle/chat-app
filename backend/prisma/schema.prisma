@@ -4,19 +4,25 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
+// Configuration for Prisma Client generation
 generator client {
   provider = "prisma-client-js"
 }
 
+// Database connection details
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
+// Model definitions for data entities
+
+// User model representing users in the system
 model User {
   id               String   @id @default(cuid())
   username         String   @unique
-  fullName         String
+  firstname        String
+  lastname         String
   password         String
   profilePic       String
   createdAt        DateTime @default(now())
@@ -27,6 +33,7 @@ model User {
   messages      Message[]
 }
 
+// Conversation model representing chat conversations
 model Conversation {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
@@ -39,6 +46,7 @@ model Conversation {
   messages   Message[]
 }
 
+// Message model representing individual messages sent in conversations
 model Message {
   id String @id @default(cuid())
 

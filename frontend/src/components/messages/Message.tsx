@@ -13,7 +13,6 @@ const Message = ({ message }: { message: MessageType }) => {
   const chatClass3 = fromMe ? "" : "justify-end";
 
   const bubbleBg = fromMe ? "bg-blue-400" : "bg-green-400 text-black";
-  const shakeClass = message.shouldShake ? "shake" : "";
 
   return (
     <div className={`chat mt-2 ${chatClass} flex flex-row `}>
@@ -25,7 +24,7 @@ const Message = ({ message }: { message: MessageType }) => {
         </div>
         <div className={`flex flex-col gap-0.5 `}>
           <p
-            className={`chat-bubble text-white ${bubbleBg} ${shakeClass} text-sm md:text-md rounded-md p-2`}
+            className={`chat-bubble text-white ${bubbleBg} text-sm md:text-md rounded-md p-2`}
           >
             {message.body}
           </p>

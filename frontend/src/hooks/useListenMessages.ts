@@ -1,25 +1,30 @@
 import { useEffect } from "react";
-
 import { useSocketContext } from "../context/SocketContext";
 import useConversation from "../zustand/useConversation";
 
-import notificationSound from "../assets/sounds/notification.mp3";
-
+// Custom hook to listen for new messages from the Socket.IO server
 const useListenMessages = () => {
+  // Access the socket instance and conversation state
   const { socket } = useSocketContext();
   const { messages, setMessages } = useConversation();
 
+  // Use the useEffect hook to set up and clean up the event listener
   useEffect(() => {
-    socket?.on("newMessage", (newMessage) => {
-      newMessage.shouldShake = true;
-      const sound = new Audio(notificationSound);
-      sound.play();
-      setMessages([...messages, newMessage]);
-    });
+    // If the socket is available, set up a listener for the "newMessage" event
+    if (socket) {
+      socket.on("newMessage", (newMessage) => {
+        // Update the messages state with the new message
+        setMessages([...messages, newMessage]);
+      });
+    }
 
+    // Cleanup function to remove the event listener on component unmount
     return () => {
-      socket?.off("newMessage");
+      if (socket) {
+        socket.off("newMessage");
+      }
     };
-  }, [socket, messages, setMessages]);
+  }, [socket, messages, setMessages]); // Dependency array ensures the effect runs when socket or messages change
 };
+
 export default useListenMessages;

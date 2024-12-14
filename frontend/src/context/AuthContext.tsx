@@ -1,9 +1,18 @@
-import { Dispatch, ReactNode, SetStateAction, createContext, useContext, useEffect, useState } from "react";
+import {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import toast from "react-hot-toast";
 
 type AuthUserType = {
   id: string;
-  fullName: string;
+  firstname: string;
+  lastname: string;
   email: string;
   profilePic: string;
   gender: string;
@@ -15,7 +24,7 @@ const AuthContext = createContext<{
   isLoading: boolean;
 }>({
   authUser: null,
-  setAuthUser: () => { },
+  setAuthUser: () => {},
   isLoading: true,
 });
 
@@ -51,14 +60,13 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <AuthContext.Provider
-			value= {{
-    authUser,
-      isLoading,
-      setAuthUser,
-			}
-}
-		>
-  { children }
-  </AuthContext.Provider>
-	);
+      value={{
+        authUser,
+        isLoading,
+        setAuthUser,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 };
