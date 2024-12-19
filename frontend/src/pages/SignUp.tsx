@@ -44,7 +44,7 @@ const SignUp = () => {
             />
           </div>
 
-          <div>
+          <div className="mt-6">
             <label className="p-2 label">
               <span className="text-base label-text">Nachname</span>
             </label>

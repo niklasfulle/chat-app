@@ -34,9 +34,6 @@ export const signup = async (req: Request, res: Response) => {
     const salt = await bcryptjs.genSalt(10);
     const hashedPassword = await bcryptjs.hash(password, salt);
 
-    //https://avatar-placeholder.iran.liara.run/
-    //const profilePic = `https://avatar.iran.liara.run/username?username=${username}`;
-
     // Use a placeholder profile picture
     const profilePic = "user.png"
 
@@ -91,7 +88,7 @@ export const login = async (req: Request, res: Response) => {
 
     // Return 400 Bad Request if username is not found
     if (!user) {
-      return res.status(400).json({ error: "Ungültige Berechtigungsnachweise" });
+      return res.status(400).json({ error: "Ungültige Anmeldedaten!" });
     }
 
     // Compare entered password with hashed password in database
@@ -99,7 +96,7 @@ export const login = async (req: Request, res: Response) => {
 
     // Return 400 Bad Request if password doesn't match
     if (!isPasswordCorrect) {
-      return res.status(400).json({ error: "Ungültige Berechtigungsnachweise" });
+      return res.status(400).json({ error: "Ungültige Anmeldedaten!" });
     }
 
     // Generate token for authentication

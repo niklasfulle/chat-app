@@ -19,7 +19,11 @@ const Conversation = ({ conversation }: { conversation: ConversationType }) => {
       >
         <div className={`avatar ${isOnline ? "online" : ""}`}>
           <div className="w-8 rounded-full md:w-12">
-            <img src={conversation.profilePic} alt="user avatar" />
+            <img
+              src={conversation.profilePic}
+              className="p-1"
+              alt="user avatar"
+            />
           </div>
         </div>
 

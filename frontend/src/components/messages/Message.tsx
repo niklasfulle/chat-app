@@ -19,7 +19,11 @@ const Message = ({ message }: { message: MessageType }) => {
       <div className={`flex gap-2 ${chatClass2}`}>
         <div className="hidden md:block chat-image avatar">
           <div className="w-6 rounded-full md:w-10">
-            <img alt="Tailwind CSS chat bubble component" src={img} />
+            <img
+              alt="Tailwind CSS chat bubble component"
+              className="p-0.5"
+              src={img}
+            />
           </div>
         </div>
         <div className={`flex flex-col gap-0.5 `}>

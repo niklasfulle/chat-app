@@ -27,7 +27,7 @@ const protectRoute = async (req: Request, res: Response, next: NextFunction) => 
 
     // Check if a token is provided
     if (!token) {
-      return res.status(401).json({ error: "Unauthorized - No token provided" });
+      return res.status(401).json({ error: "Unauthorized - Kein Token vorhanden" });
     }
 
     // Verify the token and extract the user ID
@@ -35,7 +35,7 @@ const protectRoute = async (req: Request, res: Response, next: NextFunction) => 
 
     // Check if the token is valid
     if (!decoded) {
-      return res.status(401).json({ error: "Unauthorized - Invalid Token" });
+      return res.status(401).json({ error: "Unauthorized - Ungültiger Token" });
     }
 
     // Find the user associated with the decoded token
