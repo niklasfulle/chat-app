@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-
 import { useState } from "react";
 import useSignup from "../hooks/useSignup";
 import { Input } from "../components/ui/input";
@@ -33,7 +32,7 @@ const SignUp = () => {
               <span className="text-base label-text">Vorname</span>
             </label>
             <Input
-              className="h-10 mt-1 text-white border-gray-500 m bg-zinc-800 placeholder:text-gray-200"
+              className="h-10 mt-1 text-white border-gray-500 m bg-zinc-800 placeholder:text-gray-400"
               disabled={loading}
               value={inputs.firstname}
               placeholder="John"
@@ -49,7 +48,7 @@ const SignUp = () => {
               <span className="text-base label-text">Nachname</span>
             </label>
             <Input
-              className="h-10 mt-1 text-white border-gray-500 m bg-zinc-800 placeholder:text-gray-200"
+              className="h-10 mt-1 text-white border-gray-500 m bg-zinc-800 placeholder:text-gray-400"
               disabled={loading}
               value={inputs.lastname}
               placeholder="Doe"
@@ -65,7 +64,7 @@ const SignUp = () => {
               <span className="text-base label-text">Benutzername</span>
             </label>
             <Input
-              className="h-10 mt-1 text-white border-gray-500 m bg-zinc-800 placeholder:text-gray-200"
+              className="h-10 mt-1 text-white border-gray-500 m bg-zinc-800 placeholder:text-gray-400"
               disabled={loading}
               placeholder="johndoe"
               type="text"
@@ -81,7 +80,7 @@ const SignUp = () => {
               <span className="text-base label-text">Passwort</span>
             </label>
             <Input
-              className="h-10 mt-1 text-white border-gray-500 m bg-zinc-800 placeholder:text-gray-200"
+              className="h-10 mt-1 text-white border-gray-500 m bg-zinc-800 placeholder:text-gray-400"
               disabled={loading}
               value={inputs.password}
               placeholder="********"
@@ -97,7 +96,7 @@ const SignUp = () => {
               <span className="text-base label-text">Passwort bestätigen</span>
             </label>
             <Input
-              className="h-10 mt-1 text-white border-gray-500 m bg-zinc-800 placeholder:text-gray-200"
+              className="h-10 mt-1 text-white border-gray-500 m bg-zinc-800 placeholder:text-gray-400"
               disabled={loading}
               value={inputs.confirmPassword}
               placeholder="********"

@@ -30,7 +30,7 @@ const Login = () => {
               <span className="text-base label-text">Benutzername</span>
             </label>
             <Input
-              className="h-10 mt-1 text-white border-gray-500 m bg-zinc-800 placeholder:text-gray-200"
+              className="h-10 mt-1 text-white border-gray-500 m bg-zinc-800 placeholder:text-gray-400"
               disabled={loading}
               value={inputs.username}
               placeholder="johndoe"
@@ -46,7 +46,7 @@ const Login = () => {
               <span className="text-base label-text">Passwort</span>
             </label>
             <Input
-              className="h-10 mt-1 text-white border-gray-500 m bg-zinc-800 placeholder:text-gray-200"
+              className="h-10 mt-1 text-white border-gray-500 m bg-zinc-800 placeholder:text-gray-400"
               disabled={loading}
               value={inputs.password}
               placeholder="********"
