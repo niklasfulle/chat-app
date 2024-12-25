@@ -38,7 +38,7 @@ export const sendMessage = async (req: Request, res: Response) => {
       data: {
         senderId,
         body: message,
-        conversationId: conversation.id,
+        conId: conversation.id,
       },
     });
 
