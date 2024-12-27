@@ -25,5 +25,6 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 # Git clone
 sudo git clone "https://github.com/niklasfulle/chat-app.git"
+sudo git pull
 cd chat-app
 sudo docker-compose up
