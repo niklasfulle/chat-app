@@ -26,19 +26,10 @@ export const useSocketContext = (): ISocketContext => {
   return context;
 };
 
-let data;
-try {
-  const response = await fetch("https://api.ipify.org?format=json");
-  data = await response.json();
-} catch (error) {
-  console.error("Error fetching IP address:", error);
-}
-const ip = data.ip;
-
 const socketURL =
   import.meta.env.MODE === "development"
-    ? `http://${ip}:5001`
-    : `http://${ip}:5001`;
+    ? `http://localhost:5001`
+    : `http://localhost:5001`;
 
 const SocketContextProvider = ({ children }: { children: ReactNode }) => {
   const socketRef = useRef<Socket | null>(null);

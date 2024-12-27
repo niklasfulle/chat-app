@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# Use this Shell Script to Install apache2 on the EC2 Instance to Configure the EC2 Instance as a Webserver
-
 apt update -y
 
 set -o errexit
@@ -21,6 +19,7 @@ sudo usermod --append --groups docker "$USER"
 sudo systemctl enable docker
 
 # Docker Compose
+sudo apt update
 sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
