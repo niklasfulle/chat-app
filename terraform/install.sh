@@ -19,9 +19,6 @@ sudo apt update
 sudo apt --yes --no-install-recommends install docker-ce docker-ce-cli containerd.io
 sudo usermod --append --groups docker "$USER"
 sudo systemctl enable docker
-printf '\nDocker installed successfully\n\n'
-
-printf 'Waiting for Docker to start...\n\n'
 
 # Docker Compose
 sudo curl -SL https://github.com/docker/compose/releases/download/v2.32.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose

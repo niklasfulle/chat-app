@@ -1,6 +1,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import path from "path";
+import cors from "cors"
 
 import authRoutes from "./routes/auth.js";
 import messageRoutes from "./routes/message.js";
@@ -14,6 +15,14 @@ dotenv.config();
 // Set the port number for the server
 const PORT = process.env.PORT || 5001;
 
+const corsOptions = {
+  origin: '*',
+  methods: [],
+  allowedHeaders: [],
+  exposedHeaders: [],
+  credentials: true
+};
+
 // Get the current directory path
 const __dirname = path.resolve();
 
@@ -25,7 +34,7 @@ app.use(express.json()); // Parse JSON request bodies
 app.use("/api/auth", authRoutes);
 
 // Mount the message routes under the /api/messages path
-app.use("/api/messages", messageRoutes);
+app.use("/api/messages", cors(corsOptions), messageRoutes);
 
 // If the app is not in development mode, serve static files from the frontend build
 if (process.env.NODE_ENV !== "development") {
