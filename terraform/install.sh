@@ -18,14 +18,12 @@ sudo apt --yes --no-install-recommends install docker-ce docker-ce-cli container
 sudo usermod --append --groups docker "$USER"
 sudo systemctl enable docker
 
-# Docker Compose
-curl -SL https://github.com/docker/compose/releases/download/v2.32.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+#Docker Compose
+sudo apt-get install docker-compose-plugin
 
 # Git clone
 sudo git clone "https://github.com/niklasfulle/chat-app.git"
-sudo git pull
 cd chat-app
+sudo git pull
 
-sudo docker-compose up
+sudo docker compose up
