@@ -108,6 +108,6 @@ resource "aws_instance" "ec2_dev" {
     volume_size = 20
   }
   tags = {
-    Name = "dev-node"
+    Name = "server"
   }
 }
