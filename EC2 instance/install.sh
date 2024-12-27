@@ -22,7 +22,6 @@ sudo systemctl enable docker
 printf '\nDocker installed successfully\n\n'
 
 printf 'Waiting for Docker to start...\n\n'
-sleep 10
 
 # Docker Compose
 sudo curl -SL https://github.com/docker/compose/releases/download/v2.32.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
@@ -31,4 +30,4 @@ sudo chmod +x /usr/local/bin/docker-compose
 # Git clone
 sudo git clone "https://github.com/niklasfulle/chat-app.git"
 cd chat-app
-sudo docker compose up
+sudo docker-compose up
