@@ -13,6 +13,7 @@ const useListenMessages = () => {
     // If the socket is available, set up a listener for the "newMessage" event
     if (socket) {
       socket.on("newMessage", (newMessage) => {
+        console.log("test")
         // Update the messages state with the new message
         setMessages([...messages, newMessage]);
       });

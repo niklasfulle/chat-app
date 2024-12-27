@@ -12,7 +12,7 @@ const server = http.createServer(app);
 // Configure CORS settings to allow connections from specific origins and methods
 const io = new Server(server, {
   cors: {
-    origin: ["http://client:4173"], // Allow connections from this origin only
+    origin: ["http://localhost:4173"], // Allow connections from this origin only
     methods: ["GET", "POST"], // Allow only GET and POST methods
   },
 });
