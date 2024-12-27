@@ -27,6 +27,28 @@ app.use("/api/auth", authRoutes);
 // Mount the message routes under the /api/messages path
 app.use("/api/messages", messageRoutes);
 
+const CONTACTS = [
+  {
+    "name": "Foo Bar",
+    "email": "foobar@test.com",
+    "cell": "555-123-4567"
+  },
+  {
+    "name": "Biz Baz",
+    "email": "bizbaz@test.com",
+    "cell": "555-123-5678"
+  },
+  {
+    "name": "Bing Bang",
+    "email": "bingbang@test.com",
+    "cell": "555-123-6789"
+  }
+];
+
+app.get('/contacts', (req, res) => {
+  res.json({ contacts: CONTACTS });
+});
+
 // If the app is not in development mode, serve static files from the frontend build
 if (process.env.NODE_ENV !== "development") {
   app.use(express.static(path.join(__dirname, "/frontend/dist")));
