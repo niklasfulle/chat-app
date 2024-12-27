@@ -10,9 +10,19 @@ const server = http.createServer(app);
 
 // Create a Socket.IO server instance attached to the HTTP server
 // Configure CORS settings to allow connections from specific origins and methods
+
+let data
+try {
+  const response = await fetch('https://api.ipify.org?format=json');
+  data = await response.json();
+} catch (error) {
+  console.error('Error fetching IP address:', error);
+}
+const ip = data.ip
+
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:4173"], // Allow connections from this origin only
+    origin: [`http://${ip}:4173`], // Allow connections from this origin only
     methods: ["GET", "POST"], // Allow only GET and POST methods
   },
 });
