@@ -1,6 +1,6 @@
 #!/bin/bash
 
-apt update -y
+sudo apt update -y
 
 set -o errexit
 set -o nounset
