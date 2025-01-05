@@ -82,25 +82,25 @@ resource "tls_private_key" "public_key" {
   rsa_bits  = 4096
 }
 
-variable "my_aws_key" {
-  default     = "my_aws"
+variable "my_aws_key2" {
+  default     = "my_aws2"
   description = "RSA Key variable"
   type        = string
 }
 
-resource "aws_key_pair" "my_aws_key" {
-  key_name   = var.my_aws_key
+resource "aws_key_pair" "my_aws_key2" {
+  key_name   = var.my_aws_key2
   public_key = tls_private_key.public_key.public_key_openssh
 }
 
 # Create EC2 Instance
 resource "aws_instance" "ec2_dev" {
-  instance_type          = "t2.nano"
-  ami                    = data.aws_ami.server_ami.id
+  instance_type          = "t2.micro"
+  ami                    = "ami-05c172c7f0d3aed00"
   vpc_security_group_ids = [aws_security_group.my_sg.id]
   subnet_id              = aws_subnet.my_public_subnet.id
-  key_name               = "my_aws"
-  user_data              = file("install.sh")
+  key_name               = "my_aws2"
+  user_data              = file("../install.sh")
 
   root_block_device {
     volume_size = 20
@@ -109,3 +109,8 @@ resource "aws_instance" "ec2_dev" {
     Name = "server"
   }
 }
+
+output "ec2_global_ips" {
+  value = ["${aws_instance.ec2_dev.*.public_ip}"]
+}
+

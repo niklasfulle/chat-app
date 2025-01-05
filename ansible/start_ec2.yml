@@ -8,7 +8,7 @@
     - vars.yml
 
   vars:
-    user_data: "{{ lookup('file', 'install.sh') }}"
+    user_data: "{{ lookup('file', '../install.sh') }}"
 
   tasks:
     - name: Create VPC
@@ -123,17 +123,6 @@
           Environment: Testing
       register: ec2
 
-    - name: Sleep for 30 seconds
-      wait_for:
-        timeout: 30
-
-    - name: associate an elastic IP with an instance
-      amazon.aws.ec2_eip:
-        aws_access_key: "{{ aws_access_key }}"
-        aws_secret_key: "{{ aws_secret_key }}"
-        in_vpc: yes
-        reuse_existing_ip_allowed: yes
-        state: present
-        region: "{{ aws_region }}"
-        device_id: "{{ ec2.instance_ids[0] }}"
-        ip: "{{ elastic_ip }}"
+    - name: Display the public IP address of the server.
+      debug:
+        msg: "{{ ec2.instances[0].network_interfaces[0].association.public_ip }}"
