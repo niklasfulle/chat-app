@@ -15,7 +15,7 @@ resource "aws_subnet" "my_public_subnet" {
   vpc_id               = aws_vpc.my_vpc.id
   cidr_block           = "10.0.1.0/24"
   map_public_ip_on_launch = true
-  availability_zone    = "eu-central-1a"
+  availability_zone    = "eu-west-2a"
 
   tags = {
     # Name tag for the public subnet
@@ -56,7 +56,6 @@ resource "aws_route_table_association" "my_public_assoc" {
   route_table_id = aws_route_table.my_public_rt.id
 }
 
-
 # Create EC2 Security Group and Security Rules
 resource "aws_security_group" "my_sg" {
   name        = "dev_sg"
@@ -77,24 +76,22 @@ resource "aws_security_group" "my_sg" {
   }
 }
 
-
 # Create SSH Keys for EC2 Remote Access
 resource "tls_private_key" "public_key" {
   algorithm = "RSA"
   rsa_bits  = 4096
 }
 
-variable "web_tier_EC2_rsa_key" {
-  default     = "web_tier_EC2_rsa_key"
+variable "my_aws_key" {
+  default     = "my_aws"
   description = "RSA Key variable"
   type        = string
 }
 
-resource "aws_key_pair" "web_tier_EC2_rsa_key" {
-  key_name   = var.web_tier_EC2_rsa_key
+resource "aws_key_pair" "my_aws_key" {
+  key_name   = var.my_aws_key
   public_key = tls_private_key.public_key.public_key_openssh
 }
-
 
 # Create EC2 Instance
 resource "aws_instance" "ec2_dev" {
@@ -102,7 +99,7 @@ resource "aws_instance" "ec2_dev" {
   ami                    = data.aws_ami.server_ami.id
   vpc_security_group_ids = [aws_security_group.my_sg.id]
   subnet_id              = aws_subnet.my_public_subnet.id
-  key_name               = "web_tier_EC2_rsa_key"
+  key_name               = "my_aws"
   user_data              = file("install.sh")
 
   root_block_device {
