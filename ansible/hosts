@@ -1,0 +1,5 @@
+[local]
+127.0.0.1
+
+[ec2]
+3.10.27.30 ansible_user=ubuntu
