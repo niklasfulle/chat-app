@@ -3,3 +3,5 @@
 *.pem
 *.terraform.lock.hcl
 */terraform.tfstate*
+.vscode
+key.txt

@@ -98,7 +98,7 @@ resource "aws_key_pair" "web_tier_EC2_rsa_key" {
 
 # Create EC2 Instance
 resource "aws_instance" "ec2_dev" {
-  instance_type          = "t2.micro"
+  instance_type          = "t2.nano"
   ami                    = data.aws_ami.server_ami.id
   vpc_security_group_ids = [aws_security_group.my_sg.id]
   subnet_id              = aws_subnet.my_public_subnet.id
