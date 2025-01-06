@@ -82,12 +82,6 @@ resource "tls_private_key" "public_key" {
   rsa_bits  = 4096
 }
 
-variable "my_aws_key2" {
-  default     = "my_aws2"
-  description = "RSA Key variable"
-  type        = string
-}
-
 resource "aws_key_pair" "my_aws_key2" {
   key_name   = var.my_aws_key2
   public_key = tls_private_key.public_key.public_key_openssh
@@ -95,8 +89,8 @@ resource "aws_key_pair" "my_aws_key2" {
 
 # Create EC2 Instance
 resource "aws_instance" "ec2_dev" {
-  instance_type          = "t2.micro"
-  ami                    = "ami-05c172c7f0d3aed00"
+  instance_type          = var.instance_type
+  ami                    = var.ami
   vpc_security_group_ids = [aws_security_group.my_sg.id]
   subnet_id              = aws_subnet.my_public_subnet.id
   key_name               = "my_aws2"
