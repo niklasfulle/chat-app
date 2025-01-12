@@ -1,0 +1,19 @@
+---
+- name: Start Chat App
+  hosts: ec2
+  become: true
+  gather_facts: False
+
+  tasks:
+    - name: update a github repository
+      git:
+        repo: https://github.com/niklasfulle/chat-app.git
+        dest: /chat-app
+        clone: no
+        update: yes
+
+    - name: deploy Docker Compose stack
+      community.docker.docker_compose_v2:
+        project_src: /chat-app
+        files:
+          - docker-compose.yml

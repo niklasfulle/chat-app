@@ -1,0 +1,90 @@
+---
+- name: Setup for Chat-App
+  hosts: ec2
+  become: true
+  gather_facts: False
+
+  tasks:
+    - name: Update&Upgrade
+      ansible.builtin.apt:
+        name: aptitude
+        state: present
+        update_cache: true
+
+    - name: Install dependencies
+      ansible.builtin.apt:
+        name:
+          - net-tools
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+          - python3-pip
+          - virtualenv
+          - python3-setuptools
+          - gnupg-agent
+          - autoconf
+          - dpkg-dev
+          - file
+          - g++
+          - gcc
+          - libc-dev
+          - make
+          - pkg-config
+          - re2c
+          - wget
+        state: present
+        update_cache: true
+
+    - name: Add Docker GPG apt Key
+      ansible.builtin.apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add repository into sources list
+      shell: sudo add-apt-repository --yes "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/ubuntu $(lsb_release --codename --short) stable"
+
+    - name: Install Docker
+      ansible.builtin.apt:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+        state: present
+        update_cache: true
+
+    - name: Create a docker user
+      user:
+        name: docker # Replace with desired username
+        shell: /bin/bash
+        state: present
+
+    - name: Add user to sudo group
+      user:
+        name: docker # Replace with the same username
+        groups: sudo # On Debian/Ubuntu; for CentOS/RHEL, use 'wheel'
+        append: yes
+
+    - name: Install Docker-Compose&Set Permission
+      ansible.builtin.get_url:
+        url: https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64
+        dest: /usr/local/bin/docker-compose
+        mode: "755"
+
+    - name: Create Docker-Compose symlink
+      ansible.builtin.command:
+        cmd: ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+        creates: /usr/bin/docker-compose
+
+    - name: Restart Docker
+      ansible.builtin.service:
+        name: docker
+        state: restarted
+        enabled: true
+
+    - name: Clone a github repository
+      git:
+        repo: https://github.com/niklasfulle/chat-app.git
+        dest: /chat-app
+        clone: yes
+        update: yes

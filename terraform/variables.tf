@@ -17,7 +17,7 @@ variable "ami" {
 }
 
 variable "my_aws_key2" {
-  default     = "my_aws2"
+  default     = "my_aws"
   description = "RSA Key variable"
   type        = string
 }

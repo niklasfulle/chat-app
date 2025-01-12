@@ -76,25 +76,13 @@ resource "aws_security_group" "my_sg" {
   }
 }
 
-# Create SSH Keys for EC2 Remote Access
-resource "tls_private_key" "public_key" {
-  algorithm = "RSA"
-  rsa_bits  = 4096
-}
-
-resource "aws_key_pair" "my_aws_key2" {
-  key_name   = var.my_aws_key2
-  public_key = tls_private_key.public_key.public_key_openssh
-}
-
 # Create EC2 Instance
 resource "aws_instance" "ec2_dev" {
   instance_type          = var.instance_type
   ami                    = var.ami
   vpc_security_group_ids = [aws_security_group.my_sg.id]
   subnet_id              = aws_subnet.my_public_subnet.id
-  key_name               = "my_aws2"
-  user_data              = file("../install.sh")
+  key_name               = "my_aws"
 
   root_block_device {
     volume_size = 20
