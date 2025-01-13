@@ -1,5 +1,5 @@
 ---
-- name: Start Chat App
+- name: Stop Chat App
   hosts: ec2
   become: true
   gather_facts: False
@@ -30,16 +30,3 @@
         state: absent
         force_absent: yes
       loop: "{{ docker_info.images | map(attribute='Id') }}"
-
-    - name: update a github repository
-      git:
-        repo: https://github.com/niklasfulle/chat-app.git
-        dest: /chat-app
-        clone: no
-        update: yes
-
-    - name: deploy Docker Compose stack
-      community.docker.docker_compose_v2:
-        project_src: /chat-app
-        files:
-          - docker-compose.yml
