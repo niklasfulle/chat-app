@@ -5,7 +5,7 @@
   gather_facts: False
 
   tasks:
-    - name: Update&Upgrade
+    - name: Update and Upgrade
       ansible.builtin.apt:
         name: aptitude
         state: present
@@ -55,14 +55,14 @@
 
     - name: Create a docker user
       user:
-        name: docker # Replace with desired username
+        name: docker
         shell: /bin/bash
         state: present
 
     - name: Add user to sudo group
       user:
-        name: docker # Replace with the same username
-        groups: sudo # On Debian/Ubuntu; for CentOS/RHEL, use 'wheel'
+        name: docker
+        groups: sudo
         append: yes
 
     - name: Install Docker-Compose&Set Permission

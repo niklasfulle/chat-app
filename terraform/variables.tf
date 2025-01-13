@@ -15,9 +15,3 @@ variable "ami" {
   description = "AMI ID of the Amazon Machine Image"
   default     = "ami-05c172c7f0d3aed00"
 }
-
-variable "my_aws_key2" {
-  default     = "my_aws"
-  description = "RSA Key variable"
-  type        = string
-}
