@@ -43,3 +43,7 @@
         project_src: /chat-app
         files:
           - docker-compose.yml
+
+    - name: Print Chat App Link
+      debug:
+        msg: "http://{{ ansible_ssh_host }}:4173"
