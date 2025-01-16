@@ -12,7 +12,6 @@ const MessageContainer = () => {
         <NoChatSelected />
       ) : (
         <>
-          {/* Header */}
           <div className="flex flex-row items-center gap-2 px-4 py-2 mb-2 bg-slate-500">
             <img
               src={selectedConversation.profilePic}

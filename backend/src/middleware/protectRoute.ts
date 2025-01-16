@@ -1,5 +1,4 @@
 import jwt, { JwtPayload } from "jsonwebtoken";
-
 import { Request, Response, NextFunction } from "express";
 import { db } from "../db/prisma.js";
 
